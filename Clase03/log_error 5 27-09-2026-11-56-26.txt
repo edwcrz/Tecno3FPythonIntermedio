@@ -1,0 +1,3 @@
+invalid literal for int() with base 10: 'a' 
+el valor de la lista en la posicion 5 
+el valor es a 
