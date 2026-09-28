@@ -6,7 +6,7 @@ Si el primer número es un número no válido, captura la excepción ValueError.
 En cualquier caso, muestra un mensaje de error al usuario.
 """
 def pedir_numero (mensaje):
-    while cero:
+    while True:
         try:
             numero = float(input(mensaje))
         except ValueError as v:
@@ -15,24 +15,36 @@ def pedir_numero (mensaje):
         else:
             return numero
 
-def dividir (a, b):
+def dividir (a, b) -> tuple [float, bool]:
     # while True:
         try:
-            division = a / b
+            division = 0
+            flag = False
+            division = float(a / b)
         except ZeroDivisionError as zd:
             print(f'ingresó un divisor en 0. Error de ZeroDivisionError: {zd}')
+            flag = True
+            return 0.0, flag
             # break
         else:
-            return division
+            return division, flag
 
-
-
-primer_num = pedir_numero("ingrese el primer numero un numero decimal (separado por .): ")
-segundo_num = pedir_numero("ingrese el segundo numero un numero decimal (separado por .): ")
-
-division_num = dividir (primer_num, segundo_num)
-print (f"el resultado de la división es :{division_num}")
-
+permanecer = True
+while permanecer == True :
+    ingreso = str(input("ingrese SALIR para salir del programa o ingrese la tecla enter para continuar :"))
+    if ingreso == "SALIR":
+        permanecer = False
+        break
+    flag = False
+    dividendo = pedir_numero("ingrese un numero decimal como dividendo: ")
+    divisor = pedir_numero("ingrese un numero decimal como divisor distinto de cero: ")
+    resultado, flag = dividir (dividendo, divisor)
+    if flag == False:
+        print (f"el resultado de la división es :{resultado}")
+    elif flag == True:
+        print ('Por favor no ingrese un divisor en cero')
+    else:
+        print('Saludos a Tecno3f')
 
 """
 salida = True
