@@ -45,31 +45,3 @@ while permanecer == True :
         print ('Por favor no ingrese un divisor en cero')
     else:
         print('Saludos a Tecno3f')
-
-"""
-salida = True
-resultado = 0
-while salida:
-    try:
-        dividendo = float(input('ingrese un numero que será el dividendo: '))
-        divisor = float(input('ingrese un numero que será el divisor: '))
-        resultado = float(dividendo / divisor)
-    except ValueError as v:
-        print(f"se produjo un error por tipo de dato ValueError: {v}")
-        continue
-    except ZeroDivisionError as z:
-        print(f"se produjo un error de división por cero ZeroDiviisonError: {z}")
-        continue
-    except TypeError as t:
-        print(f"se produjo un error por operación de tipo de datos TypeError: {t}")
-    except Exception as e:
-        print(f"se produjo un error inesperado Exception: {e}")
-    else:
-        print(f"el resultado es {resultado}")
-        print("pasa por else si se ejecuta sin errores el try")
-    finally:
-        print("Finally se ejecuta siempre sin importar que ocurrió con la ejecución del try")
-        print("Finally sirve para cerrar una conexiòn a un archivo o a un db, para que no quede abierto y no 10se corrompa")
-
-print ("continua el programa")
-"""
