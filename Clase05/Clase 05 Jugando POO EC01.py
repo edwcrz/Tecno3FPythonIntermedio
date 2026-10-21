@@ -112,3 +112,11 @@ que hace: _Costo__descripcion: es el nombre del atributo privado descripcion de 
 que hace: _Costo__cost: es el nombre del atributo privado cost de la clase Costo.
 
 """
+# cambio un valor sin usar el setter, lo cual no es recomendable ya que se pierde la protección de datos y la interface controlada.
+# esta opcion no es la recomendable ya que se pierde la protección de datos y la interface controlada.. CCISI A
+router3._Costo__cost = 170.0  # Modificar el costo del router3 directamente sin usar el setter
+print(f"SKU: {router3.sku}, Descripción: {router3.descripcion}, Costo: {router3.cost}")  # Mostrar el costo modificado del router3
+
+# cambio un valor usando el setter, lo cual es recomendable ya que se mantiene la protección de datos y la interface controlada.
+router3.cost = 180.0  # Modificar el costo del router3 usando el setter
+print(f"SKU: {router3.sku}, Descripción: {router3.descripcion}, Costo: {router3.cost}")  # Mostrar el costo modificado del router3
