@@ -102,14 +102,19 @@ if callable(cuentaca.numero_ca):
 else:
     print(f"el objeto {cuentaca.numero_ca} es NO callable")
 
-
 monto_ingresado = float(input("ingrese un monto a depositar decimal mayor a 0 :\n"))
 cuentaca.depositar(monto_ingresado, comision=10)
 print(cuentaca.saldo)
 
-"""
+print("--- ESTADO INICIAL ---")
 print(cuentaca)
 
+"""
+print("\n--- PRUEBA POLIMÓRFICA DE EXTRACCIONES ($800) ---")
+for c in cuentaca:
+    c.extraer(800)
+
+print(cuentaca)
 
 print("\nAtributos y Objetos de mi clase")
 print(dir(ca))

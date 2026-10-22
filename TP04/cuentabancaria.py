@@ -72,3 +72,6 @@ class CuentaBancaria (ABC):
             print("el mondo a depositar debe ser > 0")
         else:
             self._saldo += monto
+
+    def __str__(self):
+        return f"{self.titular} {self._cbu} {self._saldo}"

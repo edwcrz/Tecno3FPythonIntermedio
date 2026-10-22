@@ -17,9 +17,19 @@ class CuentaCorriente(cb):
     def extraer(self, monto):
         if monto <= 0:
             raise ValueError("La extraccion debe ser mayor o igual que cero")
-        if monto > self._saldo+self._limite_descubierto:
+        if monto > self._saldo + self._limite_descubierto:
             raise ValueError(f"El monto que pretende extraer supera el lìmite de ${self._limite_descubierto} de descubierto")
         self._saldo -= monto            
+
+    @property
+    def limite_descubierto(self):
+        return self.limite_descubierto
+
+    @limite_descubierto.setter
+    def limite_descubierto(self, limite_descubierto):
+        self.limite_descubierto = limite_descubierto
+        return
+
 
     def modificar_limite_descubierto(self, limite_descubierto):
         self._limite_descubierto = limite_descubierto

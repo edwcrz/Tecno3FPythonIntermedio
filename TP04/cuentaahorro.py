@@ -73,5 +73,10 @@ class CuentaAhorro(cb):
         if monto <= 0:
             print("el mondo a depositar debe ser > 0")
         else:
-            monto_afectado_por_comision = monto - comision
-            self.saldo += monto_afectado_por_comision 
+            self.saldo -= comision
+
+"""
+    def __str__(self, titular, _cbu, _saldo):
+            super().__str__(interes)
+            return f"{self.titular} {self._cbu} {self._saldo} {self._interes}"
+"""
