@@ -4,28 +4,17 @@ Clase Abstracta: CuentaBancaria
 
 Atributos:
 Titular (Publico)
-_CBU (Protegido, 
-        de solo lectura mediante @property
-_Saldo (Protegido, 
-        con @property para leer y 
-        @saldo.setter que lance ValueError si se intenta asignar un valor menora a cero)
+_CBU (Protegido, de solo lectura mediante @property
+_Saldo (Protegido, con @property para leer y @saldo.setter que lance ValueError si se intenta asignar un valor menora a cero)
 
 Metodos:
-Depositar(Monto): Suma dinero validando que el monto sea mayor a 0
+    Depositar(Monto): Suma dinero validando que el monto sea mayor a 0
 
-__STR__(): Retorna el formato "[TipoDeCuenta] Titular: ...| Cbu: ...|Saldo: $...".
+    __STR__(): Retorna el formato "[TipoDeCuenta] Titular: ...| Cbu: ...|Saldo: $...".
 
-@AbstractMethod def extrae(Self, Monto): 
-Método obligatorio sin cuerpo (PASS)
-Cada cuenta implementará su propia regla de extracción
-"""
-
-"""
-from abc import ABC, abstractmethod
-
-class CuentaBancaria(ABC)
-    def __init__(self, titular, _cbu, _saldo)
-        pass
+    @AbstractMethod def extrae(Self, Monto): 
+        Método obligatorio sin cuerpo (PASS)
+        Cada cuenta implementará su propia regla de extracción
 """
 
 from abc import ABC, abstractmethod
@@ -55,6 +44,10 @@ class CuentaBancaria (ABC):
     # print (type(CuentaBancaria))
     # print (vars(CuentaBancaria))
 
+    @abstractmethod
+    def extraer (self, monto):
+        pass
+
     def __str__(self):
         return (
             f"[{type(self).__name__}] "
@@ -62,16 +55,3 @@ class CuentaBancaria (ABC):
             f"CBU: {self._cbu} | "
             f"Saldo: ${self._saldo:.2f}"
         )
-
-    @abstractmethod
-    def extraer (self, monto):
-        pass
-
-    def depositar(self, monto):
-        if monto <= 0:
-            print("el mondo a depositar debe ser > 0")
-        else:
-            self._saldo += monto
-
-    def __str__(self):
-        return f"{self.titular} {self._cbu} {self._saldo}"

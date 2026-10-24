@@ -33,14 +33,16 @@ from cuentaahorro import CuentaAhorro as ca
 from cuentacorriente import CuentaCorriente as cc
 from cuentacheque import CuentaCheque as ch
 
+# instancio cuenta ca
 cuentaca = ca(
-            "Eduardo Cruz",
-            "1234567890123456789012",
-            100000,
-            0.001,
-            9453211234122
-)
+            "Eduardo Cruz",             # titular
+            "1234567890123456789012",   # cbu
+            100000,                     # saldo
+            0.01,                       # tasa
+            0.00,                       # comision
+            123456789012)               # numero_ca
 
+"""
 # Encapsulamiento 
  
 print("Objeto completo:")
@@ -84,6 +86,9 @@ print(cuentaca._CuentaAhorro__numero_ca)
 print("\nImprimo numero_ca metodo correcto con getter:")
 print(cuentaca.numero_ca)
 
+"""
+"""
+
 interes_ingresado = float(input("ingrese un interes para la cuenta ahorro mayor o igual a 0 :\n"))
 # print(type(interes_ingresado))
 cuentaca.interes = interes_ingresado
@@ -101,79 +106,134 @@ if callable(cuentaca.numero_ca):
     print(f"el objeto {cuentaca.numero_ca} eS callable")
 else:
     print(f"el objeto {cuentaca.numero_ca} es NO callable")
-
-monto_ingresado = float(input("ingrese un monto a depositar decimal mayor a 0 :\n"))
-cuentaca.depositar(monto_ingresado, comision=10)
-print(cuentaca.saldo)
-
-print("--- ESTADO INICIAL ---")
-print(cuentaca)
-
 """
-print("\n--- PRUEBA POLIMÓRFICA DE EXTRACCIONES ($800) ---")
-for c in cuentaca:
-    c.extraer(800)
+print ("opero sobre la cuentaca")
+print (f"detalles de la cuentaca {cuentaca}")
 
-print(cuentaca)
+print ("operacion depositar")
 
-print("\nAtributos y Objetos de mi clase")
-print(dir(ca))
+flag = False
 
-print("\nNumeroca:")
-print(cuenta._CuentaAhorro__numeroca)
+while flag == False:
+    try:    
+        monto_ingresado = float(input("ingrese un monto a depositar decimal mayor a 0 :\n"))
+    except ValueError as ve:
+        print (f"Value Error. Error de {ve}. el monto a depositar debe ser un numero decimal mayor o igual a 0")
+    except Exception as e:
+        print (f"Exception. Error de {e}. error desconocido")
+    print (f"el monto ingresado fue : ${monto_ingresado}")
+    flag = True
+
+flag = False
+while flag == False:
+    try:
+        comision_ingresada = float(input("ingrese una comision de operacion mayor o igual a 0 :\n"))
+    except ValueError as ve:
+        print (f"Value Error. Error de {ve}. la comision por depositar debe ser un numero decimal mayor o igual a 0")
+    except Exception as e:
+        print (f"Error de {e}. error desconocido")
+    print (f"la comision ingresada fue: ${comision_ingresada}")
+    flag = True
+
+cuentaca._comision = comision_ingresada
+
+cuentaca.depositar(monto_ingresado)
+print(f" el saldo de la cuentaca es ${cuentaca.saldo}")
+print(f" detalles de la cuentaca {cuentaca}")
+
+print ("opero sobre la cuentaca")
+print ("operacion extraer")
+
+flag = False
+while flag == False:
+    try:
+        monto_ingresado = float(input("ingrese un monto a extraer mayor a 0 :\n"))
+    except ValueError as ve:
+        print (f"ErrorValue. Error de {ve}. el monto a extraer debe ser un numero decimal mayor o igual a 0")
+    except Exception as e:
+        print (f"Error de {e}. error desconocido")
+    print (f"el monto a extraer ingresado fue: ${monto_ingresado}")
+    flag = True
+
+cuentaca.extraer(monto_ingresado)
+print(f" el saldo de la cuentaca es ${cuentaca.saldo}")
+print(f" detalles de la cuentaca {cuentaca}")
+
+cuentacc = cc(
+            cuentaca.titular,   
+            cuentaca._cbu,
+            cuentaca._saldo,
+            500.00)             #limite descubierto
 
 
-print (cuenta.titular)
+print ("opero sobre la cuentacc")
+print (f"detalles de la cuentaca {cuentacc}")
+
+print ("operacion extraer")
 
 
-print("\nDespués de extraer:")
-cuenta.extraer(15000)
-print(cuenta._saldo)
+flag = False
+while flag == False:
+    try:
+        monto_ingresado = float(input("ingrese un monto a extraer mayor a 0 :\n"))
+    except ValueError as ve:
+        print (f"ErrorValue. Error de {ve}. el monto a extraer debe ser un numero decimal mayor o igual a 0")
+    except Exception as e:
+        print (f"Error de {e}. error desconocido")
+    print (f"el monto a extraer ingresado fue: ${monto_ingresado}")
+    flag = True
 
-print("\nDespués de aplicar interés:")
-cuenta.aplicar_interes()
-print(cuenta)
+flag = False
+while flag == False:
+    try:
+        limite_descubierto_ingresado = float(input("ingrese un limite descubierto mayor o igual a 0 :\n"))
+    except ValueError as ve:
+        print (f"ErrorValue. Error de {ve}. el limite descubierto para la operacion Extraer debe ser un numero decimal mayor o igual a 0")
+    except Exception as e:
+        print (f"Error de {e}. error desconocido")
+    print (f"el monto a extraer ingresado fue: ${limite_descubierto_ingresado}")
+    flag = True
 
+cuentacc._limite_descubierto = limite_descubierto_ingresado
 
-cuenta.depositar(20000)
-print("Después del depósito:")
-print(cuenta)
+cuentacc.extraer(monto_ingresado)
+print(f"el saldo de la cuentacc es {cuentacc.saldo}")
+print(f"los detalles de la cuentacc son {cuentacc}")
 
+cuentach = ch(
+            cuentacc.titular,
+            cuentacc._cbu,
+            cuentacc._saldo,
+            50.00)              # costo de emsion del cheque
 
-cuenta.extraer(15000)
-print("Después de la extracción:")
-print(cuenta)
+print(f"el saldo de la cuentach es {cuentach.saldo}")
+print(f"los detalles de la cuentach son {cuentach}")
 
-cuenta.aplicar_interes()
-print("Después de aplicar el interés:")
-print(cuenta)
+flag = False
+while flag == False:
+    try:
+        monto_ingresado = float(input("ingrese un monto a extraer mayor a 0 :\n"))
+    except ValueError as ve:
+        print (f"ErrorValue. Error de {ve}. el monto debe ser un numero decimal mayor o igual a 0")
+    except Exception as e:
+        print (f"Error de {e}. error desconocido")
+    print (f"el monto a extraer ingresado fue: ${monto_ingresado}")
+    flag = True
 
-# --- CASOS DE PRUEBA ---
-ahorro = ca("Carlos Rossi", "285001", saldo_inicial=1000)
-corriente = cc("María López", "285002", saldo_inicial=500, limite_descubierto=1000)
-cheque = ch("Empresa SRL", "285003", saldo_inicial=2000, costo_emision=100)
+flag = False
+while flag == False:
+    try:
+        costo_emision_ingresado = float(input("ingrese un costo de emision mayor o igual a 0:\n"))
+    except ValueError as ve:
+        print (f"ErrorValue. Error de {ve}. el costo de emision ingresado debe ser un numero decimal mayor o igual a 0")
+    except Exception as e:
+        print (f"Error de {e}. error desconocido")
+    print (f"el costo de emision ingresado fue: ${costo_emision_ingresado}")
+    flag = True
 
-cuentas = [ahorro, corriente, cheque]
+cuentach._costo_emision = costo_emision_ingresado
 
-print (cuentas[ahorro])
+cuentach.extraer(monto_ingresado)
+print(f"el saldo de la cuentach es {cuentach.saldo}")
+print(f"la cuentach es {cuentach}")
 
-
-print("--- ESTADO INICIAL ---")
-for c in cuentas:
-    print(c)
-
-print("\n--- PRUEBA POLIMÓRFICA DE EXTRACCIONES ($800) ---")
-for c in cuentas:
-    c.extraer(800)
-"""
-"""
-print("\n--- PRUEBA DE INTERÉS EN CUENTA AHORRO ---")
-ahorro.aplicar_interes()
-"""
-
-"""
-print("\n--- PRUEBA DE LECTURA Y PROTECCIÓN (@property) ---")
-print(f"Saldo consultado: ${ahorro.saldo}")
-#ahorro.saldo = -500  # Descomentar para verificar que arroja ValueError
-#ahorro.cbu = "999"   # Descomentar para verificar que arroja AttributeError (solo lectura)
-"""
