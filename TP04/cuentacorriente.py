@@ -10,7 +10,7 @@ siempre que no supere saldo + Limite_Descubierto.
 from cuentabancaria import CuentaBancaria as cb
       
 class CuentaCorriente(cb):
-    def __init__(self, titular, cbu, saldo, limite_descubierto = 500, comision=0, numero_cc=0000000000):
+    def __init__(self, titular, cbu, saldo, limite_descubierto : float = 500, comision : float =0, numero_cc : int = 444555666):
         super().__init__(titular, cbu, saldo)
         self._limite_descubierto = limite_descubierto
         self._comision = comision
@@ -73,4 +73,4 @@ class CuentaCorriente(cb):
         self.saldo += monto
 
     def __str__(self):
-        return f"{super().__str__()} | Limite Descubierto: ${self._limite_descubierto:.2f} | Comision: ${self._comision:.2f} | Numero_ca: {self._CuentaCorriente__numero_cc:.2f}" 
+        return f"{super().__str__()} | Limite Descubierto: ${self._limite_descubierto:.2f} | Comision: ${self._comision:.2f} | Numero_cc: {self._CuentaCorriente__numero_cc:.2f}" 

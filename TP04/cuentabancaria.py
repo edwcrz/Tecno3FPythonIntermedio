@@ -20,7 +20,7 @@ Metodos:
 from abc import ABC, abstractmethod
 
 class CuentaBancaria (ABC):
-    def __init__(self, titular, cbu, saldo):
+    def __init__(self, titular : str, cbu : int , saldo : float):
         self.titular = titular  # publico
         self._cbu = cbu # privado
         self._saldo = saldo # privado

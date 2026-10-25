@@ -8,7 +8,7 @@ Sobreescribe Extraer(Monto): Descuenta el monto solicitado más el costo adminis
 from cuentabancaria import CuentaBancaria as cb
       
 class CuentaCheque(cb):
-    def __init__(self, titular, cbu, saldo, costo_emision = 50, numero_ch= 9999999):
+    def __init__(self, titular, cbu, saldo, costo_emision : float = 50, numero_ch : int = 777888999):
         super().__init__(titular, cbu, saldo)
         self._costo_emision = costo_emision
         self.__numero_ch = numero_ch
@@ -44,4 +44,4 @@ class CuentaCheque(cb):
         self._saldo -= monto
 
     def __str__(self):
-        return f"{super().__str__()} | Costo_emision: ${self._costo_emision:.2f} | Numero_ca: {self._CuentaCheque__numero_ch:.2f}"
+        return f"{super().__str__()} | Costo_emision: ${self._costo_emision:.2f} | Numero_ch: {self._CuentaCheque__numero_ch:.2f}"

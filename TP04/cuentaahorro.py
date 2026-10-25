@@ -10,7 +10,7 @@ from cuentabancaria import CuentaBancaria as cb
       
 class CuentaAhorro(cb):
 
-    def __init__(self, titular, cbu, saldo, tasa = 0.001, comision = 0, numero_ca = 12341234):
+    def __init__(self, titular, cbu, saldo, tasa : float = 0.001, comision :float = 0, numero_ca : int = 111222333):
         super().__init__(titular, cbu, saldo)   
         # la clase hija CuentaAhorro va extender o heredar de cuenta Bancaria.
         # exiende con 2 atributos unicos: interes y numero_ca
