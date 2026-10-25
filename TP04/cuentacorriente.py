@@ -22,8 +22,10 @@ class CuentaCorriente(cb):
 
     @limite_descubierto.setter
     def limite_descubierto(self, limite_descubierto):
-        self._limite_descubierto = limite_descubierto
-        return
+        if limite_descubierto < 0:
+            raise ValueError("el limite descubierto ingresado debe ser mayor o igual a 0")
+        else:
+            self._limite_descubierto = limite_descubierto
 
     @property
     def comision(self):
@@ -31,8 +33,10 @@ class CuentaCorriente(cb):
 
     @comision.setter
     def comision(self, comision):
-        self._limite_descubierto = comision
-        return
+        if comision < 0:
+            raise ValueError("la comision ingresada debe ser mayor o igual a 0")
+        else:
+            self._comision = comision
 
     @property
     def numero_cc(self):
@@ -43,23 +47,24 @@ class CuentaCorriente(cb):
         if numero_cuenta_cc < 0:
             raise ValueError("el numero de cuenta cc debe ser mayor o igual a 0")
         else:
-            self._CuentaAhorro__numero_cc = numero_cuenta_cc
+            self._CuentaCorriente__numero_cc = numero_cuenta_cc
 
     def modificar_limite_descubierto(self, limite_descubierto):
         self._limite_descubierto = limite_descubierto
         print (f" el nuevo limite descubierto es: {self._limite_descubierto}")
 
+    def aplicar_comision(self):
+        self._saldo -= self._comision
+
     def extraer(self, monto):
         super().extraer(monto)
         if monto <=0:
             print (f"ValueError el monto ${monto} que se ingreso es menor o igual a 0")
-        if monto > self._saldo + self._limite_descubierto:
-            print (f"el monto {monto} que ingreso es mayor al saldo ${self._saldo} incluyendo un limite descubierto ${self._limite_descubierto}")
+        if monto > self._saldo + self._limite_descubierto + self._comision:
+            print (f"el monto {monto} que ingreso es mayor al saldo ${self._saldo} incluyendo un limite descubierto ${self._limite_descubierto} y la comision por la operacion ${self._comision}")
         else:
+            self.aplicar_comision(self._comision)
             self._saldo -= monto
-
-    def aplicar_comision(self):
-        self._saldo -= self._comision
 
     def depositar(self, monto):
         if monto <= 0:
@@ -68,4 +73,4 @@ class CuentaCorriente(cb):
         self.saldo += monto
 
     def __str__(self):
-        return f"{super().__str__()} | Limite Descubierto: ${self._limite_descubierto:.2f} | Comision: ${self._comision:.2f}"
+        return f"{super().__str__()} | Limite Descubierto: ${self._limite_descubierto:.2f} | Comision: ${self._comision:.2f} | Numero_ca: {self._CuentaCorriente__numero_cc:.2f}" 

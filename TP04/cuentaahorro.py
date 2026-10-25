@@ -58,12 +58,13 @@ class CuentaAhorro(cb):
 
     def aplicar_comision(self):
         self._saldo -= self._comision
+        print (f" el saldo al aplicar la comision de la operacion es: ${self._comision}")
 
     def extraer(self, monto):
         super().extraer(monto)
         if monto <= 0:
             raise ValueError(f"La extraccion debe ser mayor o igual que cero")
-        if monto > self._saldo:
+        if monto > self._saldo + self._comision:
             raise ValueError(f"Saldo insuficiente para retirar {monto}")
         print (f"se extrajo {monto}")
         self.aplicar_comision()
@@ -76,4 +77,4 @@ class CuentaAhorro(cb):
         self.saldo += monto
 
     def __str__(self):
-        return f"{super().__str__()} | Interes: ${self._tasa:.2f} | Comision: ${self._comision:.2f} | Numero_ca: ${self._CuentaAhorro__numero_ca:.2f}"
+        return f"{super().__str__()} | Interes: ${self._tasa:.2f} | Comision: ${self._comision:.2f} | Numero_ca: {self._CuentaAhorro__numero_ca:.2f}"

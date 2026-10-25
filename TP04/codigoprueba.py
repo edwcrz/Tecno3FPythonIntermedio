@@ -24,8 +24,9 @@ for c in cuentas:
 
 print("\n--- PRUEBA DE INTERÉS EN CUENTA AHORRO ---")
 ahorro.aplicar_interes()
+print (ahorro)
 
 # ahorro.saldo = -500  # Descomentar para verificar que arroja ValueError
 print ("ok")
-ahorro.cbu = "999"   # Descomentar para verificar que arroja AttributeError (solo lectura)
+# ahorro.cbu = "999"   # Descomentar para verificar que arroja AttributeError (solo lectura)
 print ("ok")

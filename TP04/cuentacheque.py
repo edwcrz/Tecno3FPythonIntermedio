@@ -44,4 +44,4 @@ class CuentaCheque(cb):
         self._saldo -= monto
 
     def __str__(self):
-        return f"{super().__str__()} | Costo_emision: ${self._costo_emision:.2f}"
+        return f"{super().__str__()} | Costo_emision: ${self._costo_emision:.2f} | Numero_ca: {self._CuentaCheque__numero_ch:.2f}"
