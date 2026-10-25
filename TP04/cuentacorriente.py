@@ -63,7 +63,7 @@ class CuentaCorriente(cb):
         if monto > self._saldo + self._limite_descubierto + self._comision:
             print (f"el monto {monto} que ingreso es mayor al saldo ${self._saldo} incluyendo un limite descubierto ${self._limite_descubierto} y la comision por la operacion ${self._comision}")
         else:
-            self.aplicar_comision(self._comision)
+            self.aplicar_comision()
             self._saldo -= monto
 
     def depositar(self, monto):
