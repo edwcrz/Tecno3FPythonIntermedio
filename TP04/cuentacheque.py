@@ -38,7 +38,7 @@ class CuentaCheque(cb):
 
     def extraer(self, monto):
         super().extraer(monto)
-        if monto > self._saldo - self._costo_emision:
+        if monto > self._saldo + self._costo_emision:
             raise ValueError(f"el actaul costo administrativo de emision ${self._costo_emision} no permite operar con el monto ${monto} por ser superior al saldo {self.saldo}")
         self.aplicar_costo_emision ()
         self._saldo -= monto
